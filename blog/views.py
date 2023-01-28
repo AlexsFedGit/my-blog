@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+from blog.models import BlogNote
+
+
+def index(request):
+    notes = BlogNote()[:10]
+    context = {
+        'notes': notes
+    }
+    return render(request, 'blog/index.html', context)
