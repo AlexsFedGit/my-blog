@@ -1,0 +1,32 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block header %}
+<header class="masthead" style="background: url('{% static 'assets/img/home-bg.jpg' %}');margin-bottom: 0px;">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto position-relative">
+                <div class="post-heading" style="padding-top: 0px;padding-bottom: 0px;margin-top: 55px;margin-bottom: 55px;">
+                    <h1>{{ note.title }}</h1>
+                    <span class="meta">Опубликовано&nbsp;{{ note.created_at }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <p>{{ note.body }}</p>
+           </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

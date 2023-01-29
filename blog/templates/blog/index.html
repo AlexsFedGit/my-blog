@@ -1,0 +1,29 @@
+{% extends 'layout/basic.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                {% bootstrap_messages %}
+                {% for note in notes %}
+                <div class="post-preview">
+                   <a href="{% url 'blog:detail' note_id=note.id %}">
+                        <h2 class="post-title">{{ note.title }}</h2>
+                        <h3 class="post-subtitle">{{ note.body }}</h3>
+                    </a>
+                    <p class="post-meta">Опубликовано&nbsp;{{ note.created_at }}</p>
+                </div>
+                {% if not forloop.last %}
+                <hr>
+                {% endif %}
+                {% endfor %}
+                <div class="clearfix"><button class="btn btn-primary float-end" type="button">Прошлые записи ⇒</button></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
