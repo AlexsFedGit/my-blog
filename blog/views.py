@@ -16,7 +16,11 @@ def index(request):
 
 def note_detail(request, note_id):
     note = get_object_or_404(BlogNote, pk=note_id)
+    note_next = BlogNote.objects.filter(pk__gt=note_id).last()
+    note_prev = BlogNote.objects.filter(pk__lt=note_id).first()
     context = {
-        'note': note
+        'note': note,
+        'note_next': note_next,
+        'note_prev': note_prev,
     }
     return render(request, 'blog/note_detail.html', context)

@@ -24,6 +24,24 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="btn btn-primary d-none d-lg-block btn-back" type="button" href="{% url 'blog:index' %}">Вернуться</a>
+                        <a class="btn btn-primary d-block float-start d-lg-none btn-back-min" type="button" href="{% url 'blog:index' %}">◀</a>
+                    </div>
+                    <div class="col d-flex flex-column justify-content-end align-items-end flex-sm-row justify-content-sm-end justify-content-md-end">
+                        {% if note_prev %}
+                        <a class="btn btn-primary" type="button" style="width: 180px;" href="{% url 'blog:detail' note_id=note_prev.id %}">Предыдущая</a>
+                        {% else %}
+                        <a aria-disabled="true" class="btn disabled" type="button" style="width: 180px;">Предыдущая</a>
+                        {% endif %}
+                        {% if note_next %}
+                        <a class="btn btn-primary" type="button" style="width: 180px;" href="{% url 'blog:detail' note_id=note_next.id %}">Следующая</a>
+                        {% else %}
+                        <a aria-disabled="true" class="btn disabled" type="button" style="width: 180px;">Следующая</a>
+                        {% endif %}
+                    </div>
+                </div>
                 <p>{{ note.body }}</p>
            </div>
         </div>
