@@ -1,0 +1,21 @@
+{% extends 'layout/basic.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content_default %}
+<h2>Вход</h2>
+{% if user.is_authenicated %}
+<p>Вы уже выполнили вход.</p>
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <div class="col" style="text-align: right;">
+        <button class="btn btn-primary" type="submit">Войти</button>
+    </div>
+</form>
+{% endif %}
+{% endblock %}

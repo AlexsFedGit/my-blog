@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>{% block title %}Главная{% endblock %} - Блог</title>
+    <title>{% block title %}Главная{% endblock %} - fvalex.ru</title>
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
@@ -26,6 +26,8 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="{% url 'blog:index' %}">Блог</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Портфолио</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Войти</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">Выйти</a></li>
                 </ul>
             </div>
         </div>
@@ -44,6 +46,7 @@
         </div>
     </header>
     {% endblock %}
+    {% if bootstrap_messages %}
     <section>
         <div class="container">
             <div class="row">
@@ -53,18 +56,29 @@
             </div>
         </div>
     </section>
-    {% block content %}{% endblock %}
-    <footer>
+    {% endif %}
+    {% block content %}
+    <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-10 col-lg-8 mx-auto">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item"><a href="https://github.com/AlexsFedGit"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
-                    </ul>
-                    <p class="text-muted copyright">Copyright&nbsp;©&nbsp;FedorovAlexAcc 2023</p>
+                <div class="col-md-10 mx-auto">
+                {% block content_default %}{% endblock %}
                 </div>
             </div>
         </div>
+    </section>
+    {% endblock %}
+    <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item"><a href="https://github.com/AlexsFedGit"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                </ul>
+                <p class="text-muted copyright">fvalex.ru, 2023</p>
+            </div>
+        </div>
+    </div>
     </footer>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
