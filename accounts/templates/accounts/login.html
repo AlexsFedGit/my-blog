@@ -6,7 +6,7 @@
 
 {% block content_default %}
 <h2>Вход</h2>
-{% if user.is_authenicated %}
+{% if user.is_authenticated %}
 <p>Вы уже выполнили вход.</p>
 {% else %}
 <form method="post">
