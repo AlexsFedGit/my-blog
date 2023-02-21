@@ -15,7 +15,7 @@
                         <h2 class="post-title">{{ note.title }}</h2>
                         <h3 class="post-subtitle">{{ note.body }}</h3>
                     </a>
-                    <p class="post-meta text-end">Опубликовано&nbsp;{{ note.created_at }}</p>
+                    <p class="post-meta text-end">от&nbsp;{{ note.created_at|date:"d M Y, D" }}</p>
                 </div>
                 {% if not forloop.last %}
                 <hr>
