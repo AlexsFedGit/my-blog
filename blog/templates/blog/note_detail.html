@@ -43,6 +43,9 @@
                     </div>
                 </div>
                 <p>{{ note.body }}</p>
+                {% if user.is_authenticated %}
+                <a class="btn btn-primary float-end" type="button">Редактировать</a>
+                {% endif %}
            </div>
         </div>
     </div>

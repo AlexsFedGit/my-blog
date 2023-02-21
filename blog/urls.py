@@ -5,7 +5,7 @@ from blog import views
 app_name = 'blog'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:note_id>/', views.note_detail, name='detail'),
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:note_id>/', views.NoteDetailView.as_view(), name='detail'),
     path('new/', views.NoteAdd.as_view(), name='create'),
 ]
