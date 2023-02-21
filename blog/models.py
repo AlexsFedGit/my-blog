@@ -2,12 +2,13 @@ from django.db import models
 
 
 class BlogNote(models.Model):
-    title = models.CharField(
-        max_length=120,
-        verbose_name='Заголовок'
-    )
     body = models.TextField(
         verbose_name='Заметка'
+    )
+    is_published = models.BooleanField(
+        default=False,
+        db_index=True,
+        verbose_name='Опубликовано'
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -17,11 +18,7 @@ class BlogNote(models.Model):
         auto_now=True,
         verbose_name='Изменено'
     )
-    hidden = models.BooleanField(
-        default=False,
-        db_index=True,
-        verbose_name='Снять с публикации?'
-    )
+
 
     class Meta:
         verbose_name = 'Заметка'
