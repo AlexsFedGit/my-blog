@@ -1,0 +1,18 @@
+{% extends 'layout/basic_content.html' %}
+
+{% block content_default %}
+    <p>Вы уверены, что хотите удалить эту заметку?</p>
+    <div class="row">
+        <div class="col-auto">
+            <a class="btn btn-primary d-none d-lg-block btn-back" type="button" href="{% url 'blog:detail' note.id %}">Вернуться</a>
+            <a class="btn btn-primary d-block float-start d-lg-none btn-back-min" type="button" href="{% url 'blog:detail' note.id %}">◀</a>
+        </div>
+        <div class="col d-flex flex-column justify-content-end align-items-end flex-sm-row justify-content-sm-end justify-content-md-end">
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit" style="width: 180px;">Удалить</button>
+            </form>
+        </div>
+    </div>
+    <p>{{ note.body }}</p>
+{% endblock %}

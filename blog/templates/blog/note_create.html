@@ -1,0 +1,15 @@
+{% extends 'layout/basic_content.html' %}
+
+{% block content_default %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.body }}
+    <div>
+        <div class="form-check d-inline-block">
+            {{ form.is_published }}
+            <label class="form-check-label" for="{{ form.is_published.id_for_label }}">доступно только друзьям</label>
+        </div>
+        <button class="btn btn-primary d-inline-block float-end" type="button">Опубликовать</button>
+    </div>
+</form>
+{% endblock %}
