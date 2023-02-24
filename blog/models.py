@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -18,7 +19,7 @@ class BlogNote(models.Model):
         auto_now=True,
         verbose_name='Изменено'
     )
-
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Заметка'

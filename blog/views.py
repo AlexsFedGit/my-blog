@@ -1,5 +1,6 @@
 from string import punctuation, whitespace
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -8,7 +9,7 @@ from blog.forms import NoteForm
 from blog.models import BlogNote
 
 
-class IndexView(View):
+class IndexView(LoginRequiredMixin, View):
     """Main page of blog"""
     def get(self, request):
         if request.user is None:
@@ -45,7 +46,7 @@ class NoteDetailView(View):
         return render(request, 'blog/note_detail.html', context)
 
 
-class NoteAdd(View):
+class NoteAdd(LoginRequiredMixin, View):
     """Give access for creating new notes"""
     def get(self, request, *args, **kwargs):
         form = NoteForm()
@@ -61,7 +62,7 @@ class NoteAdd(View):
         return render(request, 'blog/note_create.html')
 
 
-class NoteUpdateView(View):
+class NoteUpdateView(LoginRequiredMixin, View):
     """Update exiting note"""
     def get(self, request, note_id):
         note = get_object_or_404(BlogNote, pk=note_id)
@@ -89,7 +90,7 @@ class NoteUpdateView(View):
         return render(request, 'blog/note_update.html', context)
 
 
-class NoteDelete(View):
+class NoteDelete(LoginRequiredMixin, View):
     """Remove single note from blog"""
     def get(self, request, note_id):
         note = get_object_or_404(BlogNote, pk=note_id)
