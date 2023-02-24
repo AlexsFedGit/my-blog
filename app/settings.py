@@ -25,10 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a3qcdghk$#3y4ymi6i3fwjow!f2gc68tvzjfqu0zolfe7hzpq3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = []
 
 # Application definition
 
@@ -40,10 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
-    'debug_toolbar',
     'blog',
     'accounts',
 ]
+
+# if DEBUG:
+#     INSTALLED_APPS += [
+#         'debug_toolbar',
+#     ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,8 +58,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+# if DEBUG:
+#     MIDDLEWARE += [
+#         'debug_toolbar.middleware.DebugToolbarMiddleware',
+#     ]
 
 ROOT_URLCONF = 'app.urls'
 
@@ -134,11 +143,4 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-ALLOWED_HOSTS = ['192.168.1.106']
-
-INTERNAL_IPS = [
-    '192.168.1.106',
-    "127.0.0.1",
-]
 
